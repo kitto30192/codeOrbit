@@ -1,8 +1,8 @@
 📌 CodeOrbit - AI-Powered Coding Practice Platform
 
-🚀 CodeOrbit is a next-gen online coding practice platform built with MERN (MongoDB, Express.js, React, Node.js) and integrated with AI-powered assistance (Gemini AI). It allows developers to practice coding, collaborate in real-time, analyze strengths and weaknesses, and participate in team-based coding challenges.
+🚀 CodeOrbit is a next-gen online coding practice platform built with MERN  and integrated with AI-powered assistance (Gemini AI). It allows developers to practice coding, collaborate in real-time, analyze strengths and weaknesses, and participate in team-based coding challenges.
 
-![image](https://github.com/user-attachments/assets/14c1818d-d4d7-4115-9281-617861477b2f)
+
 
 
 🔹 Features
@@ -19,7 +19,7 @@ Frontend: React.js, Tailwind CSS
 
 Backend: Node.js, Express.js
 
-Database: MongoDB
+Database: SQL
 
 Real-Time Collaboration: Socket.io
 
