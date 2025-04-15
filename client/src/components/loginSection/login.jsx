@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import  cookieParser from'cookie-parser'; 
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api/user";
 function Login() {
     // State for email, password, and error message
     const [email, setEmail] = useState("");
@@ -19,25 +20,38 @@ function Login() {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
-                credentials: "include",
-            });
 
-            if (response.ok) {
+            const response = await loginUser(JSON.stringify({email, password}));
+            if (response.status === 200) {
                 const data = await response.json();
                 //alert(`Login successful! Token: ${data.token}`);
                 // Perform additional actions, e.g., store token, redirect, etc.
                 navigate('/Explore');
-                
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Login failed.");
             }
+
+
+            // const response = await fetch("http://localhost:3000/api/login", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({ email, password }),
+            //     credentials: "include",
+            // });
+
+            // if (response.ok) {
+            //     const data = await response.json();
+            //     //alert(`Login successful! Token: ${data.token}`);
+            //     // Perform additional actions, e.g., store token, redirect, etc.
+            //     navigate('/Explore');
+                
+            // } else {
+            //     const errorData = await response.json();
+            //     setError(errorData.message || "Login failed.");
+            // }
         } catch (err) {
             setError("An error occurred. Please try again later.");
         }

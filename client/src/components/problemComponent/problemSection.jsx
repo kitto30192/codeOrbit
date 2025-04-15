@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import  {jwtDecode} from 'jwt-decode';
-
+import { getAllQuestions } from "../../api/question";
 
 function ProblemSection() {
   const [questions, setQuestions] = useState([]);
@@ -26,7 +26,7 @@ function ProblemSection() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/questions");
+        const response = await getAllQuestions(); // Fetch questions from the API
         setQuestions(response.data);
 
         // Extract unique topics from the questions

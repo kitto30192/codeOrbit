@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import queryString from 'query-string';
 import axios from "axios";
-
+import { getQuestionById } from '../api/question';
 const ENDPOINT =  'http://localhost:8000';
 let socket ;
 export const SocketContext = createContext(); // Replace with your server's URL
@@ -38,20 +38,16 @@ function CodeEditor( ) {
     // Ensure socket is initialized here
 
     // Fetch question data based on questionId
-    fetch(`http://localhost:3000/question/${questionId}`)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to fetch question data");
-        }
+    const respone = getQuestionById(questionId);
+    respone
+      .then((data) => {
+        console.log(data); // Log the fetched question data
+        setQuestion(data); // Set the question data in state
       })
-      .then(questionData => {
-           setQuestion(questionData);
-      })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching question data:", error);
       });
+      
 
     socket.emit("joinRoom", { name, room }, (error) => {
       if (error) {

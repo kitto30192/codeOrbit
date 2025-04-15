@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay,faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { getQuestionById } from "../api/question";
 function Problem(props) {
     const [ico ,setIco] = useState(faPlay);
     const [levelColor ,setLevelColor] =useState("text-black");
@@ -28,7 +29,7 @@ function Problem(props) {
     const handleIconClick = async () => {
       try {
           // Perform the GET request to fetch question details
-          const response = await fetch( `http://localhost:3000/question/${props.id}`);
+          const response = await getQuestionById(props.id);
 
           if (response.ok) {
               const questionData = await response.json();

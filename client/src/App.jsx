@@ -6,7 +6,7 @@ import ProblemSection from './problemComponent/problemSection';
 import Explore from './exploreSection/explore';
 import Login from './loginSection/login';
 import SignUp from './loginSection/signUp';
-import Dashboard from './Dashboard';
+import Dashboard from '../Dashboard';
 function App() {
   return (
     <Router>

@@ -1,5 +1,5 @@
 # Logs
-node_modules/
+node_modules
 .env
 logs
 *.log
@@ -24,3 +24,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+package-lock.json
+package.json
+.env

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { registerUser } from "../../api/user";
 function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -27,23 +27,34 @@ function SignUp() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, number, name, username, country }),
-      });
 
-      if (response.ok) {
+      const response = registerUser(JSON.stringify({email, password, number, name, username, country}));
+      if (response.status === 200) {
         const data = await response.json();
         alert("Signup successful!");
         navigate('/Login');
-        // Additional actions like redirection can be added here
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Signup failed.");
       }
+
+      // const response = await fetch("http://localhost:3000/register", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ email, password, number, name, username, country }),
+      // });
+
+      // if (response.ok) {
+      //   const data = await response.json();
+      //   alert("Signup successful!");
+      //   navigate('/Login');
+      //   // Additional actions like redirection can be added here
+      // } else {
+      //   const errorData = await response.json();
+      //   setError(errorData.message || "Signup failed.");
+      // }
     } catch (err) {
       setError("An error occurred. Please try again later.");
     }
